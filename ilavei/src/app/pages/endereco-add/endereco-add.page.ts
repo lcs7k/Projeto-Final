@@ -3,6 +3,7 @@ import { EnderecoService } from '../../services/endereco.service';
 import { MsgService } from '../../services/msg.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Endereco } from '../../models/endereco';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-endereco-add',
@@ -19,7 +20,8 @@ export class EnderecoAddPage implements OnInit {
     private enderecoService: EnderecoService,
     protected msg: MsgService,
     private router: Router,
-    private activadeRouter: ActivatedRoute
+    private activadeRouter: ActivatedRoute,
+    private auth:AngularFireAuth
   ) { }
 
   ngOnInit() {
@@ -27,10 +29,6 @@ export class EnderecoAddPage implements OnInit {
     this.userkey = this.activadeRouter.snapshot.paramMap.get('userkey');
     this.endereco.userkey = this.userkey; 
     this.getEndereco(this.key)
-
-    this.userkey = this.activadeRouter.snapshot.paramMap.get('key');
-    this.endereco.userkey = this.userkey;
-    //this.getEndereco(this.key)
   }
 
   async getEndereco(key) {
